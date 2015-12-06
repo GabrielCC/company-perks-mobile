@@ -7,21 +7,25 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity">
-
-    <ImageView android:layout_width="300dp"
-               android:layout_height="300dp"
-               android:background="@drawable/circle"
-               android:layout_centerInParent="true"/>
+    android:paddingBottom="@dimen/activity_vertical_margin">
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="SCAN\nNFC HERE"
-        android:layout_centerInParent="true"
+        android:text="Who are you ?"
         android:textAlignment="center"
-        android:textSize="50dp"
-        android:textColor="#000000"/>
+        android:textSize="45dp"
+        android:textColor="#000000"
+        android:id="@+id/who_are_you_text"/>
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/who_are_you_text"
+        android:text="Choose your company"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        android:textColor="#000000"
+        android:id="@+id/company_label"/>
     <ProgressBar
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
