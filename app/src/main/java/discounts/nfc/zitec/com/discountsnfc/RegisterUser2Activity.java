@@ -83,6 +83,7 @@ public class RegisterUser2Activity extends BaseActivity {
             hideLoader();
             if (result)
             {
+                UserData.getInstance().wasRegistered = true;
                 finish();
             }
             else

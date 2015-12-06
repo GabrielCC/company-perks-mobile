@@ -18,4 +18,5 @@ public class UserData
     }
 
     public String firstName, companyId, lastName, nfcId;
+    public boolean wasRegistered = false;
 }

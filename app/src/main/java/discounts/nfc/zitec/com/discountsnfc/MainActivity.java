@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.os.AsyncTask;
@@ -28,6 +29,7 @@ public class MainActivity extends BaseActivity {
     private IntentFilter[] intentFiltersArray;
     private String[][] techListsArray;
     private String currentNfcId;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +77,12 @@ public class MainActivity extends BaseActivity {
     public void onResume() {
         super.onResume();
         mNfcAdapter.enableForegroundDispatch(this, pendingIntent, intentFiltersArray, techListsArray);
+        UserData user = UserData.getInstance();
+        if (user != null && user.wasRegistered)
+        {
+            UserData.getNewInstance();
+            displayDialog("You have been registered successfully. Enjoy your discounts!","Success");
+        }
     }
 
     public void onNewIntent(Intent intent) {
@@ -168,9 +176,14 @@ public class MainActivity extends BaseActivity {
 
     protected void displayErrorDialog(String error)
     {
+        displayDialog(error,"Ooops");
+    }
+
+    protected void displayDialog(String error, String title)
+    {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_error);
-        dialog.setTitle("Ooops...");
+        dialog.setTitle(title);
 
         // set the custom dialog components - text, image and button
         TextView error_text = (TextView) dialog.findViewById(R.id.error_text);

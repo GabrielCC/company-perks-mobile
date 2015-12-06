@@ -98,10 +98,8 @@ public class RegisterUser1Activity extends BaseActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String selectedCompany = items[which].toString();
-                        for (Company c : companyList)
-                        {
-                            if (c.name.equals(selectedCompany))
-                            {
+                        for (Company c : companyList) {
+                            if (c.name.equals(selectedCompany)) {
                                 selectedCompanyId(c.companyId);
                                 break;
                             }
@@ -114,7 +112,13 @@ public class RegisterUser1Activity extends BaseActivity {
                         finish();
                     }
                 });
-                builder.show();
+                try {
+                    builder.show();
+                }
+                catch (Exception e)
+                {
+
+                }
             }
         }
     }

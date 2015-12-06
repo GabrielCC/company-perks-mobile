@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.Ndef;
@@ -11,6 +12,7 @@ import android.nfc.tech.NfcF;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -28,7 +30,23 @@ public class BaseActivity extends AppCompatActivity {
     public static final String MERCHANT_ID = "YFF4QV33J4PDW";
     public static final int DIALOG_CLOSE_DELAY_TIME = 8000;
     public static final String CARD_NOT_REGISTERED_ERROR_CODE = "404.1";
+    public static final String PREF_KEY_MERCHANT_ID = "merchantId";
+    public static final String PREF_KEY_DEVICE_ID = "deviceId";
     protected ProgressBar progressBar;
+    protected SharedPreferences prefs;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        /*
+        if ((!prefs.contains(PREF_KEY_MERCHANT_ID) || !prefs.contains(PREF_KEY_DEVICE_ID)) && !(this instanceof SetupActivity))
+        {
+            startActivity(new Intent(this,SetupActivity.class));
+            finish();
+        }
+        */
+    }
 
 
     protected void associateProgressBar()
